@@ -14,18 +14,35 @@ Engine::Engine() : gameStatus(STARTUP){
 	infow = screenWidth;
 	inputh = screenHeight - infoh - 1;
 	inputw = screenWidth;
-
+	
 	/* Initialize windows here */
-	WINDOW *info;								//This will be the main game window. All actions displayed here.
-	WINDOW *input;								//This window will be for user input.
 	info = newwin(infoh, infow, 0, 0);
 	input = newwin(inputh, inputw, infoh+1, 0);
+	welcome = newwin(10, 80, 15, 20);
 	wborder(info, '|', '|', '-', '-', '+', '+', '+', '+');
 	wborder(input, '|', '|', '-', '-', '+', '+', '+', '+');
+	wborder(welcome, '|', '|', '-', '-', '+', '+', '+', '+');
 }
 
 void Engine::update(){
 	if(gameStatus == STARTUP){
-		printw("Welcome to [textrpg], Adventurer.\nPress any key to enter the world\nor press \"q\" to quit.");
+		mvwprintw(welcome, 1, 1, "Welcome to [textrpg], Adventurer.\nPress any key to enter the world\nor press \"q\" to quit.");
+		wrefresh(welcome);
+		wgetch(welcome);
+		erase();
+		wrefresh(info);
+		wrefresh(input);
+	}
+	gameStatus = IDLE;
+	echo();
+	wgetnstr(input, commandBuffer, 50);
+	noecho();
+	if(!strncmp(commandBuffer, "quit", 4)){
+			//exit function goes here;
+	}
+	else{
+			wgetnstr(input, commandBuffer, 50);
+			wrefresh(info);
+			wrefresh(input);
 	}
 }
