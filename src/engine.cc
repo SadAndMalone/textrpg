@@ -24,7 +24,7 @@ Engine::Engine() : gameStatus(STARTUP){
 	wborder(welcome, '|', '|', '-', '-', '+', '+', '+', '+');
 }
 
-void Engine::update(){
+int Engine::update(){
 	if(gameStatus == STARTUP){
 		mvwprintw(welcome, 1, 1, "Welcome to [textrpg], Adventurer.\nPress any key to enter the world\nor press \"q\" to quit.");
 		wrefresh(welcome);
@@ -38,11 +38,18 @@ void Engine::update(){
 	wgetnstr(input, commandBuffer, 50);
 	noecho();
 	if(!strncmp(commandBuffer, "quit", 4)){
-			//exit function goes here;
+			//save function
+			exitGame();
+			return 0;
 	}
 	else{
 			wgetnstr(input, commandBuffer, 50);
 			wrefresh(info);
 			wrefresh(input);
+			return 1;
 	}
+}
+
+void Engine::exitGame(){
+	endwin();
 }

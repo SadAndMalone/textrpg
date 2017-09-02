@@ -17,7 +17,8 @@ class Engine{
 						DEFEAT
 				} gameStatus;
 				Engine();
-				void update();
+				int update();
+				void exitGame();
 
 		private:
 				char *commandBuffer = new char[50];
