@@ -5,13 +5,13 @@
 #include <iostream>
 #include <ncurses.h>
 #include "engine.h"
+#include <string>
 
 int main(){
 
-		int play = 1;
 		Engine engine;
-		while(play == 1){
-			play = engine.update();
+		while(engine.keepGoing()){
+			engine.update();
 		}
 			
 		return 0;
