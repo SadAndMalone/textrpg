@@ -22,6 +22,7 @@ class Engine{
 				void userInput();
 				bool keepGoing(){return keepPlaying;}
 				void processInput(char *commandBuffer);
+				void message(char *commandBuffer);
 
 		private:
 				char *commandBuffer = new char[50];

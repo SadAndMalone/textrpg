@@ -61,18 +61,22 @@ void Engine::userInput(){
 	processInput(commandBuffer);
 }
 
+void Engine::message(char *commandBuffer){
+	wprintw(infoContent, commandBuffer);
+	wrefresh(infoContent);
+}
+
 void Engine::processInput(char *commandBuffer){
 	std::string command = commandBuffer;
 	if(command == "look"){
-		wprintw(infoContent, "You look around and dont see anything.\n\r");
-		wrefresh(infoContent);
+		message("You look around and see nothing.\n\r");
 	}
 	else if(command == "quit"){
 		exitGame();
 		keepPlaying = 0;
 	}
 	else{
-		wprintw(infoContent, "Your incessant babbling has done nothing but confuse.\n\r");
+		message("Your incessant babbling has done nothing but confuse.\n\r");
 		wrefresh(infoContent);
 	}
 }
