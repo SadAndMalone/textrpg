@@ -20,8 +20,9 @@ class Engine{
 				bool keepGoing(){return keepPlaying;}
 				void processInput(char *commandBuffer);
 				void message(std::string text);
-
+				std::queue<Mob *> mobs;
 		private:
+				Mob *player;
 				char *commandBuffer = new char[50];
 				std::string text;
 				WINDOW *info;

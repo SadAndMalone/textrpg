@@ -1,4 +1,6 @@
 #include <string>
+#include <random>
+#include <queue>
 #include <ncurses.h>
 class Mob;
 #include "attacker.h"
