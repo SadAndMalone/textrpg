@@ -2,9 +2,6 @@
  * 2017
  */
 
-#include <ncurses.h>
-#include <string.h>
-
 #ifndef ENGINE_H
 #define ENGINE_H
 
@@ -22,10 +19,11 @@ class Engine{
 				void userInput();
 				bool keepGoing(){return keepPlaying;}
 				void processInput(char *commandBuffer);
-				void message(char *commandBuffer);
+				void message(std::string text);
 
 		private:
 				char *commandBuffer = new char[50];
+				std::string text;
 				WINDOW *info;
 				WINDOW *infoContent;
 				WINDOW *input;
@@ -40,4 +38,6 @@ class Engine{
 				int infoLine = 1;
 				int inputLine = 1;
 };
+
+extern Engine engine;
 #endif

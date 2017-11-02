@@ -1,5 +1,4 @@
-#include "engine.h"
-#include <string>
+#include "main.h"
 
 Engine::Engine() : gameStatus(STARTUP){
 				
@@ -61,8 +60,9 @@ void Engine::userInput(){
 	processInput(commandBuffer);
 }
 
-void Engine::message(char *commandBuffer){
-	wprintw(infoContent, commandBuffer);
+void Engine::message(std::string text){
+	char *cmessage = &text[0u];
+	wprintw(infoContent, cmessage);
 	wrefresh(infoContent);
 }
 

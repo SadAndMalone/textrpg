@@ -2,14 +2,12 @@
  * 2017
  */
 
-#include <iostream>
-#include <ncurses.h>
-#include "engine.h"
-#include <string>
+#include "main.h"
+
+Engine engine;
 
 int main(){
 
-		Engine engine;
 		while(engine.keepGoing()){
 			engine.update();
 		}
