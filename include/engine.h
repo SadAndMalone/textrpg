@@ -9,6 +9,7 @@
 #include <queue>
 #include <string>
 #include "mob.h"
+#include "room.h"
 
 class Engine{
 		public:

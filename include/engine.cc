@@ -1,5 +1,7 @@
 #include "engine.h"
 
+Room *room = new Room();
+
 Engine::Engine() : gameStatus(STARTUP){
 				
 	initscr();									//initialize ncurses
@@ -69,7 +71,7 @@ void Engine::message(std::string text){
 void Engine::processInput(char *commandBuffer){
 	std::string command = commandBuffer;
 	if(command == "look"){
-		message("You look around and see nothing.\n\r");
+		room->displayRoom();
 	}
 	else if(command == "quit"){
 		exitGame();
@@ -77,6 +79,5 @@ void Engine::processInput(char *commandBuffer){
 	}
 	else{
 		message("Your incessant babbling has done nothing but confuse.\n\r");
-		wrefresh(infoContent);
 	}
 }
