@@ -5,6 +5,11 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+#include <ncurses.h>
+#include <queue>
+#include <string>
+#include "mob.h"
+
 class Engine{
 		public:
 				enum GameStatus{

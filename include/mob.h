@@ -1,5 +1,12 @@
 #ifndef MOB_H
-#define MOD_H
+#define MOB_H
+
+class Attacker;
+class Killable;
+
+#include <string>
+#include "attacker.h"
+#include "killable.h"
 
 class Mob {
 	public:

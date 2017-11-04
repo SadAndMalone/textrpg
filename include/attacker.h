@@ -1,6 +1,8 @@
-
 #ifndef ATTACKER_H
 #define ATTACKER_H
+class Mob;
+
+#include "mob.h"
 
 class Attacker {
 	public:

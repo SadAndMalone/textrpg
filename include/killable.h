@@ -1,5 +1,9 @@
 #ifndef KILLABLE_H
 #define KILLABLE_H
+class Mob;
+
+#include "mob.h"
+#include "engine.h"
 
 class Killable {
 	public:

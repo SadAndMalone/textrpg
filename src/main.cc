@@ -2,7 +2,7 @@
  * 2017
  */
 
-#include "main.h"
+#include "engine.h"
 
 Engine engine;
 

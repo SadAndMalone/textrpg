@@ -1,4 +1,4 @@
-#include "main.h"
+#include "engine.h"
 
 Engine::Engine() : gameStatus(STARTUP){
 				

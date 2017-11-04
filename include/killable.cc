@@ -1,4 +1,4 @@
-#include "main.h"
+#include "killable.h"
 
 Killable::Killable(int defence, int maxhp, const char *corpseName):
 			defence(defence), hp(maxhp), maxhp(maxhp), corpseName(corpseName){
