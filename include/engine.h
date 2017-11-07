@@ -6,7 +6,7 @@
 #define ENGINE_H
 
 #include <ncurses.h>
-#include <queue>
+#include <list>
 #include <string>
 #include "mob.h"
 #include "room.h"
@@ -26,7 +26,6 @@ class Engine{
 				bool keepGoing(){return keepPlaying;}
 				void processInput(char *commandBuffer);
 				void message(std::string text);
-				std::queue<Mob *> mobs;
 		private:
 				Mob *player;
 				char *commandBuffer = new char[50];

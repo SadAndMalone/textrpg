@@ -12,10 +12,11 @@ class Room {
 		Room(const char *name = "default", const char *description = "defaultdesc");
 		void createRoom();
 		void displayRoom();
+		std::list<Mob *> mobs;
 	private:
 		const char *name;
 		const char *description;
 		void addMobs();
-		Mob* randomMob();
+		void randomMob();
 };
 #endif

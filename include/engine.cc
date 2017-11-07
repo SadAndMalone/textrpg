@@ -65,6 +65,7 @@ void Engine::userInput(){
 void Engine::message(std::string text){
 	char *cmessage = &text[0u];
 	wprintw(infoContent, cmessage);
+	wprintw(infoContent, "\n\r");
 	wrefresh(infoContent);
 }
 

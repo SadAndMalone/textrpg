@@ -4,7 +4,7 @@ OBJS=./objects/*.o
 SRC=./src/
 LIBS=-lncurses -ltinfo
 CC=g++
-CFLAGS=-c -w -I$(INCLUDE) -I$(SRC) $(LIBS)
+CFLAGS=-c -w -g -I$(INCLUDE) -I$(SRC) $(LIBS)
 LFLAGS=-w -I$(INCLUDE) -I$(SRC) $(LIBS)
 
 game: map
