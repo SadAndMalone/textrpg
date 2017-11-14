@@ -1,6 +1,6 @@
 #include "engine.h"
 
-Room *room = new Room();
+Room *room = new Room("Starting Area", "It's an exciting area filled with balloons and welcome banners");
 
 Engine::Engine() : gameStatus(STARTUP){
 				
@@ -35,6 +35,12 @@ Engine::Engine() : gameStatus(STARTUP){
 	wborder(welcome, '|', '|', '~', '~', '+', '+', '+', '+');
 }
 
+void Engine::createPlayer() {
+	player = new Mob("Player");
+	player->attacker = new Attacker(3);
+	player->killable = new PlayerKillable();
+}
+
 void Engine::update(){
 	if(gameStatus == STARTUP){
 		mvwprintw(welcomeContent, 0, 0, "Welcome to [textrpg], Adventurer.\n Press any key to enter the world\n or type \"quit\".");
@@ -53,6 +59,15 @@ void Engine::exitGame(){
 	endwin();
 }
 
+/*void Engine::combat(Mob *player, Mob *enemy) {
+	int lastDamage;
+	while(player->killable->hp <= 0 && enemy->killable->hp <= 0) {
+		lastDamage = player->attacker->attack(player, enemy);
+		lastDamage = enemy->attacker->attack(enemy, player);
+	}	
+}
+*/
+
 void Engine::userInput(){
 	wmove(inputContent, screenHeight-2, 2);
 	wrefresh(inputContent);
@@ -69,14 +84,21 @@ void Engine::message(std::string text){
 	wrefresh(infoContent);
 }
 
-void Engine::processInput(char *commandBuffer){
-	std::string command = commandBuffer;
-	if(command == "look"){
+void Engine::processInput(char *commandBuffer) {
+	std::string commandString = commandBuffer;
+	std::string command = commandString.substr(0, commandString.find(" "));
+	commandString.erase(0, commandString.find(" ")+1);
+	std::string target = commandString.substr(0, commandString.find(" "));
+		
+	if(command == "look") {
 		room->displayRoom();
 	}
-	else if(command == "quit"){
+	else if(command == "quit") {
 		exitGame();
 		keepPlaying = 0;
+	}
+	else if(command == "attack") {
+		engine.message("Entering combat with " + target + ".\n\r");
 	}
 	else{
 		message("Your incessant babbling has done nothing but confuse.\n\r");

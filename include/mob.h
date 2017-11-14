@@ -15,6 +15,7 @@ class Mob {
 		Attacker *attacker;
 		Killable *killable;
 		std::string getName(){return name;}
+		void display();
 	private:
 		const char *name;
 };

@@ -7,9 +7,8 @@ class Mob;
 class Attacker {
 	public:
 		Attacker(int attack = 1) : atk(attack){}
-		void attack(Mob *target);
+		int attack(Mob *self, Mob *target);
 	private:
 		int atk;
 };
-
 #endif

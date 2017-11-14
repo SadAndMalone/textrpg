@@ -26,6 +26,8 @@ class Engine{
 				bool keepGoing(){return keepPlaying;}
 				void processInput(char *commandBuffer);
 				void message(std::string text);
+				void createPlayer();
+//				void combat(Mob *player, Mob *enemy);
 		private:
 				Mob *player;
 				char *commandBuffer = new char[50];

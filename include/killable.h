@@ -11,12 +11,11 @@ class Killable {
 		bool isDead(){return hp <= 0;}
 		int takeDamage(Mob *self, int damage);
 		virtual void die(Mob *self);
-		int getDefence(){return defence;}
 		const char* getCorpseName(){return corpseName;}
-	protected:
 		int defence;
 		int hp;
 		int maxhp;
+	protected:
 		const char *corpseName;
 };
 
