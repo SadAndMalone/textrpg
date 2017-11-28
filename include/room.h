@@ -9,7 +9,7 @@
 
 class Room {
 	public:
-		Room(const char *name = "default", const char *description = "defaultdesc");
+		Room(const char *name = NULL , const char *description = NULL);
 		void createRoom();
 		void displayRoom();
 		std::list<Mob *> mobs;
@@ -19,4 +19,5 @@ class Room {
 		void addMobs();
 		void randomMob();
 };
+
 #endif

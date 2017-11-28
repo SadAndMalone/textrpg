@@ -10,7 +10,7 @@ Room::Room(const char *name, const char *description) :
 void Room::displayRoom(){
 	engine.message(name);
 	engine.message(description);
-	engine.message(std::to_string(mobs.size()));
+	engine.message("\n\r === Mobs In This Room === \n\r");
 	std::list<Mob *>::iterator it;
 	for(it=mobs.begin(); it != mobs.end(); ++it){
 			Mob *mob = *it;
