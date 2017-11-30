@@ -1,2 +1,6 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.cpp"
+#include "../include/catch.hpp"
+#include "../include/engine.h"
+#include "test-input.cc"
+
+Engine engine;

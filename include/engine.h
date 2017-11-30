@@ -24,13 +24,13 @@ class Engine{
 				void exitGame();
 				void userInput();
 				bool keepGoing(){return keepPlaying;}
-				void processInput(char *commandBuffer);
-				void message(std::string text);
+				std::string processInput(char *commandBuffer);
+				std::string message(std::string text);
 				void createPlayer();
 //				void combat(Mob *player, Mob *enemy);
 		private:
 				Mob *player;
-				char *commandBuffer = new char[50];
+				char *commandBuffer = new char[100];
 				std::string text;
 				WINDOW *info;
 				WINDOW *infoContent;

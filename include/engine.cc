@@ -77,18 +77,20 @@ void Engine::userInput(){
 	processInput(commandBuffer);
 }
 
-void Engine::message(std::string text){
+std::string Engine::message(std::string text){
 	char *cmessage = &text[0u];
 	wprintw(infoContent, cmessage);
 	wprintw(infoContent, "\n\r");
 	wrefresh(infoContent);
+	std::string retText = cmessage;
+	return retText;
 }
 
-void Engine::processInput(char *commandBuffer) {
+std::string Engine::processInput(char *commandBuffer) {
 	std::string commandString = commandBuffer;
 	std::string command = commandString.substr(0, commandString.find(" "));
-	commandString.erase(0, commandString.find(" ")+1);
-	std::string target = commandString.substr(0, commandString.find(" "));
+	commandString.erase(0, commandString.find(" "));
+	std::string target = commandString.substr(0, commandString.find('\0'));
 		
 	if(command == "look") {
 		room->displayRoom();
@@ -103,4 +105,5 @@ void Engine::processInput(char *commandBuffer) {
 	else{
 		message("Your incessant babbling has done nothing but confuse.\n\r");
 	}
+	return command + target;
 }
