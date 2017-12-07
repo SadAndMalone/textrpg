@@ -1,6 +1,10 @@
 #include "room.h"
+#include "graph.h"
 
-struct Node {
-	Room current;
-	Node *next
+class Map {
+	public:
+		Map();
+		int listRooms();
+	private:
+		Graph<Room *> rooms;
 };

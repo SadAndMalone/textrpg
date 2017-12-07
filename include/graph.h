@@ -4,7 +4,7 @@ template <class T>
 struct Node {
 	T current;
 	int id;
-	struct Node *adj;
+	struct Node<T> *adj;
 };
 
 template <class T>
@@ -16,13 +16,21 @@ template <class T>
 class Graph {
 	public:
 		Graph(int V);
+		Graph(Graph<T>& copy);
 		Node<T> *newListNode(T data, int id);
 		void addEdge(T src, int srcid, T dest, int destid);
+		Graph<T> resize();
 		void printGraph();
 	private:
 		int V;
+		int size = 0;
 		struct AdjList<T> *array;
+		Graph<T> operator=(Graph<T> *a) {
+			this->size = a->size;
+			copy(a->array[0], a->array[0] = a->size, this->array[0]);
+		}
 };
+
 
 /*
  *
@@ -44,22 +52,37 @@ Graph<T>::Graph(int V) {
 }
 
 template <class T>
+Graph<T>::Graph(Graph<T>& copy) {
+	this->size = copy.size;
+	for(int i=0; i<V; ++i) {
+		this->array[i] = copy.array[i];
+	}
+	delete this;
+}
+
+template <class T>
 Node<T>* Graph<T>::newListNode(T data, int id) {
 	Node<T> *newNode = new Node<T>;
 	newNode->current = data;
 	newNode->id = id;
 	newNode->adj = NULL;
+	++size;
 	return newNode;
 }
 
 template <class T>
 void Graph<T>::addEdge(T src, int srcid, T dest, int destid) {
-	Node<T> *newNode = newListNode(dest, destid);
-	newNode->adj = array[srcid].head;
-	array[srcid].head = newNode;
-	newNode = newListNode(src, srcid);
-	newNode->adj = array[destid].head;
-	array[destid].head = newNode;
+		//Create dest node
+		Node<T> *newNode= newListNode(dest, destid);
+
+		newNode->adj = array[srcid].head;
+		array[srcid].head = newNode;
+
+		//Create src node
+		newNode = newListNode(src, srcid);
+		
+		newNode->adj = array[destid].head;
+		array[destid].head = newNode;
 }
 
 template <class T>
@@ -77,4 +100,11 @@ void Graph<T>::printGraph() {
 		}
 		std::cout << std::endl;
 	}
+}
+
+template <class T>
+Graph<T> Graph<T>::resize() {
+	Graph<T> newGraph(V+5);
+	newGraph = *this;
+	return newGraph;
 }
