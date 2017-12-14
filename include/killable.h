@@ -1,9 +1,6 @@
-#ifndef KILLABLE_H
-#define KILLABLE_H
-class Mob;
+#pragma once
 
-#include "mob.h"
-#include "engine.h"
+class Mob;
 
 class Killable {
 	public:
@@ -30,5 +27,4 @@ class EnemyKillable : public Killable  {
 		EnemyKillable(int defence = 1, int maxhp = 5, const char *corpseName = "A rotting carcass");
 		void die(Mob *self);
 };
-#endif
 

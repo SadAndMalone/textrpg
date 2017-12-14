@@ -1,8 +1,8 @@
 #include "engine.h"
+#include "mob.h"
+#include "map.h"
 
-Room *room = new Room("Starting Area", "It's an exciting area filled with balloons and welcome banners");
-
-Engine::Engine() : gameStatus(STARTUP){
+Engine::Engine() : gameStatus(STARTUP), mainMap{new Map} { 
 				
 	initscr();									//initialize ncurses
 	erase();
@@ -93,7 +93,10 @@ std::string Engine::processInput(char *commandBuffer) {
 	std::string target = commandString.substr(0, commandString.find('\0'));
 		
 	if(command == "look") {
-		room->displayRoom();
+	//	room->displayRoom();
+	}
+	else if(command == "rooms") {
+		mainMap->listRooms();
 	}
 	else if(command == "quit") {
 		exitGame();

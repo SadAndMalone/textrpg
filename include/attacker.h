@@ -1,8 +1,6 @@
-#ifndef ATTACKER_H
-#define ATTACKER_H
-class Mob;
+#pragma once
 
-#include "mob.h"
+class Mob;
 
 class Attacker {
 	public:
@@ -11,4 +9,3 @@ class Attacker {
 	private:
 		int atk;
 };
-#endif

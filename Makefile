@@ -1,7 +1,10 @@
 INCLUDE=./include/
 OBJDIR=./objects/
 TESTDIR=./tests/
-OBJS=./objects/*.o
+MAINOBJ=./objects/main.o
+TESTOBJ=./objects/test.o
+ENGINEOBJS=./objects/engine.o ./objects/killable.o
+MAPOBJS=./objects/room.o ./objects/map.o
 SRC=./src/
 LIBS=-lncurses -ltinfo
 CC=g++
@@ -10,16 +13,17 @@ LFLAGS=-w -I$(INCLUDE) -I$(SRC) $(LIBS)
 
 tests: map
 	$(CC) $(CFLAGS) $(TESTDIR)testmain.cc -o $(OBJDIR)test.o
-	$(CC) $(LIBS) $(OBJS) -o test
+	$(CC) $(LIBS) $(ENGINEOBJS) $(MAPOBJS) $(TESTOBJ) -o test
 	rm -r $(OBJDIR)
 
 game: map
 	$(CC) $(CFLAGS) $(SRC)main.cc -o $(OBJDIR)main.o
-	$(CC) $(LIBS) $(OBJS) -o game
+	$(CC) $(LIBS) $(ENGINEOBJS) $(MAPOBJS) $(MAINOBJ) -o game
 	rm -r $(OBJDIR)
 
 map: mobs
 	$(CC) $(CFLAGS) $(INCLUDE)room.cc -o $(OBJDIR)room.o
+	$(CC) $(CFLAGS) $(INCLUDE)map.cc -o $(OBJDIR)map.o
 
 mobs: engine
 	$(CC) $(CFLAGS) $(INCLUDE)killable.cc -o $(OBJDIR)killable.o

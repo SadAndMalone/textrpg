@@ -1,4 +1,7 @@
+#pragma once
+
 #include <iostream>
+#include <sstream>
 
 template <class T>
 struct Node {
@@ -20,15 +23,15 @@ class Graph {
 		Node<T> *newListNode(T data, int id);
 		void addEdge(T src, int srcid, T dest, int destid);
 		Graph<T> resize();
+		int size(){return V;}
 		void printGraph();
 	private:
 		int V;
-		int size = 0;
 		struct AdjList<T> *array;
 		Graph<T> operator=(Graph<T> *a) {
-			this->size = a->size;
-			copy(a->array[0], a->array[0] = a->size, this->array[0]);
+			copy(a->array[0], a->array[0] = a->V, this->array[0]);
 		}
+		std::ostringstream output;
 };
 
 
@@ -43,8 +46,7 @@ class Graph {
  */
 
 template <class T>
-Graph<T>::Graph(int V) {
-	this->V = V;
+Graph<T>::Graph(int V) : V(V){
 	array = new AdjList<T>[V];
 	for(int i=0; i<V; ++i) {
 		array[i].head = NULL;
@@ -53,7 +55,7 @@ Graph<T>::Graph(int V) {
 
 template <class T>
 Graph<T>::Graph(Graph<T>& copy) {
-	this->size = copy.size;
+	this->V = copy.V;
 	for(int i=0; i<V; ++i) {
 		this->array[i] = copy.array[i];
 	}
@@ -66,7 +68,6 @@ Node<T>* Graph<T>::newListNode(T data, int id) {
 	newNode->current = data;
 	newNode->id = id;
 	newNode->adj = NULL;
-	++size;
 	return newNode;
 }
 
@@ -87,24 +88,20 @@ void Graph<T>::addEdge(T src, int srcid, T dest, int destid) {
 
 template <class T>
 void Graph<T>::printGraph() {
-	for(int i=0; i<V; ++i) {
-		Node<T> *pCrawl = array[i].head;
-		std::cout << pCrawl->current;
-	}
-	for(int v=0; v<V; ++v) {
+	for(int v=0; v<this->size(); ++v) {
 		Node<T> *pCrawl = array[v].head;
 		std::cout << "\n Adjacency List of vertex " << v << "\n head";
 		while(pCrawl) {
-			std::cout << "-> " << pCrawl->current;
+			output << pCrawl->current;
 			pCrawl = pCrawl->adj;
 		}
-		std::cout << std::endl;
 	}
 }
-
+/*
 template <class T>
 Graph<T> Graph<T>::resize() {
 	Graph<T> newGraph(V+5);
 	newGraph = *this;
 	return newGraph;
 }
+*/

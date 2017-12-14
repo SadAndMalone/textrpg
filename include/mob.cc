@@ -8,5 +8,5 @@ Mob::~Mob() {
 	delete this;
 }
 
-void Mob:display() {
-	
+void Mob::display() {
+}	

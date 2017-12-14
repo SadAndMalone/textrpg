@@ -1,11 +1,11 @@
-#ifndef ROOM_H
-#define ROOM_H
+#pragma once
 
-#include "mob.h"
-#include "engine.h"
+#include <list>
 #include <cstdlib>
 #include <ctime>
 #include <string>
+
+class Mob;
 
 class Room {
 	public:
@@ -20,4 +20,5 @@ class Room {
 		void randomMob();
 };
 
-#endif
+
+std::ostringstream& operator<<(std::ostringstream &out, Room &room);

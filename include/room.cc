@@ -1,4 +1,6 @@
 #include "room.h"
+#include "mob.h"
+#include "engine.h"
 
 const int MAX_MOBS = 8;
 
@@ -53,4 +55,9 @@ void Room::randomMob() {
 		mobs.push_back(beggar);
 		return;
 	}
+}
+
+std::ostringstream& operator<<(std::ostringstream &out, Room &room) {
+	room.displayRoom();
+	return out;
 }

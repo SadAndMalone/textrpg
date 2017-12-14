@@ -2,16 +2,17 @@
  * 2017
  */
 
-#ifndef ENGINE_H
-#define ENGINE_H
+#pragma once
 
 #include <ncurses.h>
 #include <list>
 #include <string>
-#include "mob.h"
-#include "room.h"
 
-class Engine{
+class Mob;
+class Room;
+class Map;
+
+class Engine {
 		public:
 				enum GameStatus{
 						STARTUP,
@@ -45,7 +46,7 @@ class Engine{
 				bool keepPlaying = 1;
 				int infoLine = 1;
 				int inputLine = 1;
+				Map *mainMap;
 };
 
 extern Engine engine;
-#endif

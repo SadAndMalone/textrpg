@@ -1,4 +1,5 @@
 #include "attacker.h"
+#include "mob.h"
 
 int Attacker::attack(Mob *self, Mob *target) {
 	if(self->attacker->atk <= target->killable->defence) {

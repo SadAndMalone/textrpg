@@ -1,9 +1,4 @@
-#ifndef MOB_H
-#define MOB_H
-
-class Attacker;
-class Killable;
-
+#pragma once
 #include <string>
 #include "attacker.h"
 #include "killable.h"
@@ -19,4 +14,3 @@ class Mob {
 	private:
 		const char *name;
 };
-#endif
