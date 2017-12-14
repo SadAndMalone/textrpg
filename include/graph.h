@@ -55,11 +55,10 @@ Graph<T>::Graph(int V) : V(V){
 
 template <class T>
 Graph<T>::Graph(Graph<T>& copy) {
-	this->V = copy.V;
+	copy.V = this->V; 
 	for(int i=0; i<V; ++i) {
-		this->array[i] = copy.array[i];
+		copy.array[i] = this->array[i];
 	}
-	delete this;
 }
 
 template <class T>
@@ -88,8 +87,9 @@ void Graph<T>::addEdge(T src, int srcid, T dest, int destid) {
 
 template <class T>
 void Graph<T>::printGraph() {
-	for(int v=0; v<this->size(); ++v) {
+	for(int v=0; v<V; ++v) {
 		Node<T> *pCrawl = array[v].head;
+		if(!pCrawl) break;
 		std::cout << "\n Adjacency List of vertex " << v << "\n head";
 		while(pCrawl) {
 			output << pCrawl->current;

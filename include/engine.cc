@@ -2,7 +2,7 @@
 #include "mob.h"
 #include "map.h"
 
-Engine::Engine() : gameStatus(STARTUP), mainMap{new Map} { 
+Engine::Engine() : gameStatus(STARTUP) { 
 				
 	initscr();									//initialize ncurses
 	erase();
@@ -50,6 +50,8 @@ void Engine::update(){
 		erase();
 		wrefresh(info);
 		wrefresh(input);
+		mainMap = new Map;
+		mainMap->buildMap();
 	}
 	gameStatus = IDLE;
 	userInput();
