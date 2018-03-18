@@ -51,7 +51,7 @@ void Engine::update(){
 		wrefresh(info);
 		wrefresh(input);
 		mainMap = new Map;
-		mainMap->buildMap();
+		mainMap->listRooms();
 	}
 	gameStatus = IDLE;
 	userInput();
@@ -105,7 +105,7 @@ std::string Engine::processInput(char *commandBuffer) {
 		keepPlaying = 0;
 	}
 	else if(command == "attack") {
-		engine.message("Entering combat with " + target + ".\n\r");
+		message("Entering combat with " + target + ".\n\r");
 	}
 	else{
 		message("Your incessant babbling has done nothing but confuse.\n\r");

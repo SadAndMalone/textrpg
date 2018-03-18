@@ -12,6 +12,7 @@ class Room {
 		Room(const char *name = NULL , const char *description = NULL);
 		void createRoom();
 		void displayRoom();
+		std::string getName() {return name;}
 		std::list<Mob *> mobs;
 	private:
 		const char *name;
@@ -21,4 +22,4 @@ class Room {
 };
 
 
-std::ostringstream& operator<<(std::ostringstream &out, Room &room);
+std::ostringstream& operator<<(std::ostringstream &out, Room room);

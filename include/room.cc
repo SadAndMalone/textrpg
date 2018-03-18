@@ -57,7 +57,7 @@ void Room::randomMob() {
 	}
 }
 
-std::ostringstream& operator<<(std::ostringstream &out, Room &room) {
-	room.displayRoom();
+std::ostringstream& operator<<(std::ostringstream &out, Room *room) {
+	room->displayRoom();
 	return out;
 }

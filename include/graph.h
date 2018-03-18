@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <sstream>
+#include "room.h"
 
 template <class T>
 struct Node {
@@ -22,7 +23,7 @@ class Graph {
 		Graph(Graph<T>& copy);
 		Node<T> *newListNode(T data, int id);
 		void addEdge(T src, int srcid, T dest, int destid);
-		Graph<T> resize();
+//		Graph<T> resize();
 		int size(){return V;}
 		void printGraph();
 	private:
@@ -31,7 +32,6 @@ class Graph {
 		Graph<T> operator=(Graph<T> *a) {
 			copy(a->array[0], a->array[0] = a->V, this->array[0]);
 		}
-		std::ostringstream output;
 };
 
 
@@ -87,14 +87,9 @@ void Graph<T>::addEdge(T src, int srcid, T dest, int destid) {
 
 template <class T>
 void Graph<T>::printGraph() {
-	for(int v=0; v<V; ++v) {
-		Node<T> *pCrawl = array[v].head;
-		if(!pCrawl) break;
-		std::cout << "\n Adjacency List of vertex " << v << "\n head";
-		while(pCrawl) {
-			output << pCrawl->current;
-			pCrawl = pCrawl->adj;
-		}
+	for(int i = 0; i < V; ++i) {
+		Node<T> *pCrawl = array[0].head;
+		pCrawl->current->displayRoom();
 	}
 }
 /*

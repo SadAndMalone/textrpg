@@ -9,7 +9,8 @@ This is a small pet project of mine that I've just been throwing some code into 
 
 At the moment, it is likely the worst game in existence. There is quite literally zero gameplay. Currently you can: 
 
-- __look__: Displays the name and description of your current room followed by the mobs in the room.
+- ~~__look__: Displays the name and description of your current room followed by the mobs in the room.~~ This is currently broken.
+- __rooms__: Displays the name and description of all rooms, followed by the mobs in the room.
 - __quit__: Exits the game.
 - __literally anything else__: Displays a generic message for unrecognized commands
 
