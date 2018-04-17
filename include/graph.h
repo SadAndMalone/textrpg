@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <sstream>
 #include "room.h"
 
 template <class T>
@@ -23,7 +22,6 @@ class Graph {
 		Graph(Graph<T>& copy);
 		Node<T> *newListNode(T data, int id);
 		void addEdge(T src, int srcid, T dest, int destid);
-//		Graph<T> resize();
 		int size(){return V;}
 		void printGraph();
 	private:
@@ -72,31 +70,20 @@ Node<T>* Graph<T>::newListNode(T data, int id) {
 
 template <class T>
 void Graph<T>::addEdge(T src, int srcid, T dest, int destid) {
-		//Create dest node
-		Node<T> *newNode= newListNode(dest, destid);
-
-		newNode->adj = array[srcid].head;
-		array[srcid].head = newNode;
-
-		//Create src node
-		newNode = newListNode(src, srcid);
+		Node<T> *newNode = newListNode(src, srcid);
+		Node<T> *newNode2= newListNode(dest, destid);
 		
+		array[destid].head = newNode2;
+		array[srcid].head = newNode;
 		newNode->adj = array[destid].head;
-		array[destid].head = newNode;
+		newNode2->adj = array[srcid].head;
 }
 
 template <class T>
 void Graph<T>::printGraph() {
-	for(int i = 0; i < V; ++i) {
-		Node<T> *pCrawl = array[0].head;
+	Node<T> *pCrawl = array[0].head;
+	while(pCrawl) {
 		pCrawl->current->displayRoom();
+		pCrawl = pCrawl->adj;
 	}
 }
-/*
-template <class T>
-Graph<T> Graph<T>::resize() {
-	Graph<T> newGraph(V+5);
-	newGraph = *this;
-	return newGraph;
-}
-*/

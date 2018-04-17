@@ -9,4 +9,8 @@ Mob::~Mob() {
 }
 
 void Mob::display() {
+	engine.message(this->name + "\n");
+	engine.message("Attack: " + this->attacker->getAttack() + "\n");
+	engine.message("HP: " + this->killable->hp + "/" + this->killable->maxhp + "\n");
+	engine.message("\n");
 }	

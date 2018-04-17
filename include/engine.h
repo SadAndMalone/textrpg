@@ -7,8 +7,8 @@
 #include <ncurses.h>
 #include <list>
 #include <string>
+#include "mob.h"
 
-class Mob;
 class Room;
 class Map;
 

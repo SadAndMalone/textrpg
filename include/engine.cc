@@ -1,5 +1,4 @@
 #include "engine.h"
-#include "mob.h"
 #include "map.h"
 
 Engine::Engine() : gameStatus(STARTUP) { 
@@ -29,10 +28,10 @@ Engine::Engine() : gameStatus(STARTUP) {
 	idlok(infoContent, TRUE);
 	idlok(inputContent, TRUE);
 	scrollok(infoContent, TRUE);
-	scrollok(inputContent, TRUE);
-	wborder(info, '|', '|', '~', '~', '+', '+', '+', '+');
-	wborder(input, '|', '|', '~', '~', '+', '+', '+', '+');
-	wborder(welcome, '|', '|', '~', '~', '+', '+', '+', '+');
+	scrollok(inputContent, TRUE);									//Border Looks Like This
+	wborder(info, '|', '|', '~', '~', '+', '+', '+', '+');			//+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
+	wborder(input, '|', '|', '~', '~', '+', '+', '+', '+');			//|										|
+	wborder(welcome, '|', '|', '~', '~', '+', '+', '+', '+');		//+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
 }
 
 void Engine::createPlayer() {
@@ -43,7 +42,7 @@ void Engine::createPlayer() {
 
 void Engine::update(){
 	if(gameStatus == STARTUP){
-		mvwprintw(welcomeContent, 0, 0, "Welcome to [textrpg], Adventurer.\n Press any key to enter the world\n or type \"quit\".");
+		mvwprintw(welcomeContent, 0, 0, "Welcome to shitMUD, Adventurer.\n Press any key to enter the world\n or type \"quit\".");
 		wrefresh(welcome);
 		wrefresh(welcomeContent);
 		wgetch(welcome);
@@ -51,7 +50,6 @@ void Engine::update(){
 		wrefresh(info);
 		wrefresh(input);
 		mainMap = new Map;
-		mainMap->listRooms();
 	}
 	gameStatus = IDLE;
 	userInput();
@@ -108,7 +106,7 @@ std::string Engine::processInput(char *commandBuffer) {
 		message("Entering combat with " + target + ".\n\r");
 	}
 	else{
-		message("Your incessant babbling has done nothing but confuse.\n\r");
+		message("Can you at least say something resembling human speech?\n\r");
 	}
 	return command + target;
 }

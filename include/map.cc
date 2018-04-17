@@ -8,7 +8,6 @@ Map::Map() : rooms(2) {
 void Map::buildMap() {
 	rooms.addEdge(new Room("Welcome Area", "A bright courtyard filled with balloons"), 0,
 			new Room("Plains", "A vast plains just outsize of the welcome area"), 1);
-	this->listRooms();
 }
 
 int Map::listRooms() {

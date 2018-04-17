@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "room.h"
 #include "attacker.h"
 #include "killable.h"
 
@@ -13,4 +14,12 @@ class Mob {
 		void display();
 	private:
 		const char *name;
+};
+
+class Player : public Mob {
+	public:
+		Player(){Mob("Player");}
+		Room location();
+	private:
+		Room *currentloc;
 };
