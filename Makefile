@@ -3,7 +3,7 @@ OBJDIR=./objects/
 TESTDIR=./tests/
 MAINOBJ=./objects/main.o
 TESTOBJ=./objects/test.o
-ENGINEOBJS=./objects/engine.o ./objects/killable.o
+ENGINEOBJS=./objects/commandParser.o ./objects/engine.o ./objects/killable.o
 MAPOBJS=./objects/room.o ./objects/map.o
 SRC=./src/
 LIBS=-lncurses -ltinfo
@@ -28,9 +28,13 @@ map: mobs
 mobs: engine
 	$(CC) $(CFLAGS) $(INCLUDE)killable.cc -o $(OBJDIR)killable.o
 
-engine:
-	mkdir $(OBJDIR)
+engine: parser
 	$(CC) $(CFLAGS) $(INCLUDE)engine.cc -o $(OBJDIR)engine.o
+
+parser:
+	mkdir $(OBJDIR)
+	$(CC) $(CFLAGS) $(INCLUDE)commandParser.cc -o $(OBJDIR)commandParser.o
+
 
 clean:
 	rm game test

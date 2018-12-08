@@ -1,5 +1,6 @@
 #include "engine.h"
 #include "map.h"
+#include <iostream>
 
 Engine::Engine() : gameStatus(STARTUP) { 
 				
@@ -87,26 +88,26 @@ std::string Engine::message(std::string text){
 }
 
 std::string Engine::processInput(char *commandBuffer) {
-	std::string commandString = commandBuffer;
-	std::string command = commandString.substr(0, commandString.find(" "));
-	commandString.erase(0, commandString.find(" "));
-	std::string target = commandString.substr(0, commandString.find('\0'));
+	std::string command = commandBuffer;
+	Command inputCommand(command);
+	inputCommand.splitCommand();
+	command = inputCommand.parseAction();	
 		
-	if(command == "look") {
+	if(command == "Look") {
 	//	room->displayRoom();
 	}
-	else if(command == "rooms") {
+	else if(command == "Exits") {
 		mainMap->listRooms();
 	}
-	else if(command == "quit") {
+	else if(command == "Quit") {
 		exitGame();
 		keepPlaying = 0;
 	}
-	else if(command == "attack") {
-		message("Entering combat with " + target + ".\n\r");
-	}
+	//else if(command == "attack") {
+	//	message("Entering combat with " + target + ".\n\r");
+	//}
 	else{
-		message("Can you at least say something resembling human speech?\n\r");
+		message(command);
 	}
-	return command + target;
+	return command /*+ target*/;
 }

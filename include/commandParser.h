@@ -3,7 +3,9 @@
  * Jacob Malone		2018
  */
 
+#pragma once
 #include <string>
+#include <deque>
 
 class Command {
 	public:
@@ -14,5 +16,5 @@ class Command {
 	private:
 		std::string fullCommand;
 		std::string action;
-		std::string args[];
+		std::deque<std::string> args;
 };

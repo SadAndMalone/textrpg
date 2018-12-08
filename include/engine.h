@@ -8,6 +8,8 @@
 #include <list>
 #include <string>
 #include "mob.h"
+#include "commandParser.h"
+
 
 class Room;
 class Map;
@@ -48,5 +50,6 @@ class Engine {
 				int inputLine = 1;
 				Map *mainMap;
 };
+
 
 extern Engine engine;

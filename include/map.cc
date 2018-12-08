@@ -6,11 +6,11 @@ Map::Map() : rooms(2) {
 }
 
 void Map::buildMap() {
-	rooms.addEdge(new Room("Welcome Area", "A bright courtyard filled with balloons"), 0,
-			new Room("Plains", "A vast plains just outsize of the welcome area"), 1);
+	rooms.addEdge(new Room("Welcome Area", "A bright courtyard filled with balloons"),
+			new Room("Plains", "A vast plains just outsize of the welcome area"));
 }
 
 int Map::listRooms() {
-	rooms.printGraph();
+	rooms.printAdjacent(rooms.vertices[0]);
 	return 1;
 }

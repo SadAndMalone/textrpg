@@ -18,6 +18,7 @@ void Room::displayRoom(){
 			Mob *mob = *it;
 			engine.message(mob->getName());
 	}
+	engine.message("");
 }
 
 void Room::createRoom() {
