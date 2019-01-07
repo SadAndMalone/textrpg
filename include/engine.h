@@ -30,9 +30,10 @@ class Engine {
 				std::string processInput(char *commandBuffer);
 				std::string message(std::string text);
 				void createPlayer();
+				Mob *player;
+				Map* getMap() {return mainMap;}
 //				void combat(Mob *player, Mob *enemy);
 		private:
-				Mob *player;
 				char *commandBuffer = new char[100];
 				std::string text;
 				WINDOW *info;

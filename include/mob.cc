@@ -9,8 +9,23 @@ Mob::~Mob() {
 }
 
 void Mob::display() {
-	engine.message(this->name + "\n");
-	engine.message("Attack: " + this->attacker->getAttack() + "\n");
-	engine.message("HP: " + this->killable->hp + "/" + this->killable->maxhp + "\n");
-	engine.message("\n");
+	std::string newMessage;
+	engine.message(this->name);
+	newMessage = "Attack: " + std::to_string(this->attacker->getAttack());
+	engine.message(newMessage);
+	newMessage = "HP: " + std::to_string(this->killable->hp) + "/" + std::to_string(this->killable->maxhp);  
+	engine.message(newMessage);
+	engine.message("");
 }	
+
+int Mob::move(std::string location) {
+	location[0] = std::toupper(location[0]);	
+	engine.message(location);
+
+	int newLocation = engine.getMap()->getRooms().isAdjacent(this->location, location);
+	engine.message(std::to_string(newLocation));
+	if(newLocation != -1) {
+		setLocation(newLocation);
+	}
+	return newLocation;
+}

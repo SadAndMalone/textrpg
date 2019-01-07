@@ -39,6 +39,7 @@ void Engine::createPlayer() {
 	player = new Mob("Player");
 	player->attacker = new Attacker(3);
 	player->killable = new PlayerKillable();
+	player->setLocation(0);
 }
 
 void Engine::update(){
@@ -51,6 +52,7 @@ void Engine::update(){
 		wrefresh(info);
 		wrefresh(input);
 		mainMap = new Map;
+		createPlayer();
 	}
 	gameStatus = IDLE;
 	userInput();
@@ -92,12 +94,20 @@ std::string Engine::processInput(char *commandBuffer) {
 	Command inputCommand(command);
 	inputCommand.splitCommand();
 	command = inputCommand.parseAction();	
+	std::string target = inputCommand.getTarget();
 		
 	if(command == "Look") {
-	//	room->displayRoom();
+		mainMap->displayRoom(player->getLocation());
+	}
+	else if(command == "Status") {
+		player->display();
 	}
 	else if(command == "Exits") {
 		mainMap->listRooms();
+	}
+	else if(command == "Move") {
+		message("Moving to" + target);
+		player->move(target);
 	}
 	else if(command == "Quit") {
 		exitGame();

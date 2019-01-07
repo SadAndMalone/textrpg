@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <iostream>
 #include "room.h"
 
 template <class T>
@@ -18,7 +19,9 @@ class Graph {
 		Node<T> addVertex(T newData);
 		int addEdge(T source, T dest);
 		void printAdjacent(Node<T> current);
+		int isAdjacent(int current, std::string node);
 		std::vector< Node<T> > vertices;
+
 	private:
 		int V;
 		std::vector< std::list< Node<T> > > adjList;
@@ -66,4 +69,15 @@ void Graph<T>::printAdjacent(Node<T> current) {
 	for (listIt = adjList[current.id].begin(); listIt != adjList[current.id].end(); listIt++) {
 		listIt->data->displayRoom();
 	}
+}
+
+template <class T>
+int Graph<T>::isAdjacent(int current, std::string node) {
+	typename std::list< Node<T> >::iterator it;
+	for(it = adjList[current].begin(); it != adjList[current].end(); it++) {
+		if(it->data->getName() == node) {
+			return it->id;
+		}
+	}
+	return -1;
 }
